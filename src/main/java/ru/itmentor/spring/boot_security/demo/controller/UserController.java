@@ -25,4 +25,6 @@ public class UserController {
         model.addAttribute("userInfo", currentUser);
         return "user-page";
     }
+
+    
 }

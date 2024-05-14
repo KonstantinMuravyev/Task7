@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.itmentor.spring.boot_security.demo.model.User;
 import ru.itmentor.spring.boot_security.demo.service.UserService;
 
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -36,7 +38,7 @@ public class    AdminController {
 
     @GetMapping("/user-info/{id}")
     public String userInfo(@PathVariable("id") long id, Model model) {
-        User currentUser = userService.getUser(id);
+        Optional<User> currentUser = userService.getUser(id);
         model.addAttribute("userInfo", currentUser);
         return "user-page";
     }
@@ -57,7 +59,7 @@ public class    AdminController {
 
     @RequestMapping("/update-info/{id}")
     public String userInfo(Model model, @PathVariable("id") long id) {
-        User currentUser = userService.getUser(id);
+        Optional<User> currentUser = userService.getUser(id);
         model.addAttribute("newUser", currentUser);
         return "user-edit-page";
     }
